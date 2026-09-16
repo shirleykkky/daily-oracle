@@ -100,6 +100,15 @@ body{
 .text-block .en small{display:block;color:var(--accent);font-size:13px;margin-top:4px;letter-spacing:.5px;}
 .outfit-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
 .outfit-tags span{font-size:12px;padding:5px 12px;border-radius:14px;background:rgba(232,200,116,0.12);color:var(--gold-soft);}
+.zodiac-signs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:14px;}
+.zodiac-signs .sign-btn{padding:6px 2px;border-radius:8px;font-size:12px;text-align:center;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid transparent;transition:all .2s;}
+.zodiac-signs .sign-btn .s-icon{font-size:16px;display:block;}
+.zodiac-signs .sign-btn .s-name{font-size:10px;color:var(--text-dim);}
+.zodiac-signs .sign-btn.active{background:rgba(155,123,255,0.2);border-color:rgba(155,123,255,0.4);}
+.zodiac-signs .sign-btn.active .s-name{color:var(--accent);}
+.outfit-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.outfit-tabs .tab{padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;background:rgba(255,255,255,0.06);border:1px solid transparent;transition:all .2s;color:var(--text-dim);}
+.outfit-tabs .tab.active{background:rgba(232,200,116,0.15);border-color:rgba(232,200,116,0.3);color:var(--gold-soft);}
 .footer{text-align:center;color:var(--text-dim);font-size:11px;margin-top:24px;letter-spacing:1px;line-height:1.8;}
 .cal{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:11px;}
 .cal th{color:var(--text-dim);font-weight:400;padding:6px 0;text-align:center;font-size:10px;letter-spacing:1px;}
@@ -138,7 +147,7 @@ body{
         <div class="desc">阴 · 新沂市</div>
         <div class="range">20°C ~ 30°C · 西风1级</div>
         <div class="weather-tags">
-          <span>空气质量 优</span><span>湿度 71%</span><span>紫外线 弱</span><span>日出 05:50</span><span>日落 18:12</span>
+          <span>体感 20.2°C</span><span>空气质量 优</span><span>湿度 71%</span><span>紫外线 弱</span><span>日出 05:50</span><span>日落 18:12</span>
         </div>
       </div>
     </div>
@@ -227,13 +236,22 @@ body{
 
   <!-- 3. 星座运势 -->
   <div class="card">
-    <div class="card-header"><span class="icon">♍</span>星座运势 · 处女座</div>
-    <div class="zodiac">
-      <span class="star">✦</span> 综合运势：★★★★☆　<span style="color:var(--text-dim)">水星与天王星三分相，思维敏锐，适合突破常规。</span><br>
-      <span class="star">✦</span> 事业：★★★★☆　<span style="color:var(--text-dim)">职场上有人逼你墨守成规，别妥协，直面问题比搁置更可取。</span><br>
-      <span class="star">✦</span> 爱情：★★★☆☆　<span style="color:var(--text-dim)">不必做刺猬，与人结仇不如放下，参加团体活动有缘分。</span><br>
-      <span class="star">✦</span> 财运：★★★☆☆　<span style="color:var(--text-dim)">看不住荷包，逛商场容易冲动消费，理性为上。</span>
+    <div class="card-header"><span class="icon">🔮</span>星座运势 · 9月16日</div>
+    <div class="zodiac-signs" id="zodiacSigns">
+      <div class="sign-btn" data-sign="0"><span class="s-icon">♈</span><span class="s-name">白羊</span></div>
+      <div class="sign-btn" data-sign="1"><span class="s-icon">♉</span><span class="s-name">金牛</span></div>
+      <div class="sign-btn" data-sign="2"><span class="s-icon">♊</span><span class="s-name">双子</span></div>
+      <div class="sign-btn" data-sign="3"><span class="s-icon">♋</span><span class="s-name">巨蟹</span></div>
+      <div class="sign-btn" data-sign="4"><span class="s-icon">♌</span><span class="s-name">狮子</span></div>
+      <div class="sign-btn active" data-sign="5"><span class="s-icon">♍</span><span class="s-name">处女</span></div>
+      <div class="sign-btn" data-sign="6"><span class="s-icon">♎</span><span class="s-name">天秤</span></div>
+      <div class="sign-btn" data-sign="7"><span class="s-icon">♏</span><span class="s-name">天蝎</span></div>
+      <div class="sign-btn" data-sign="8"><span class="s-icon">♐</span><span class="s-name">射手</span></div>
+      <div class="sign-btn" data-sign="9"><span class="s-icon">♑</span><span class="s-name">摩羯</span></div>
+      <div class="sign-btn" data-sign="10"><span class="s-icon">♒</span><span class="s-name">水瓶</span></div>
+      <div class="sign-btn" data-sign="11"><span class="s-icon">♓</span><span class="s-name">双鱼</span></div>
     </div>
+    <div class="zodiac" id="zodiacContent"></div>
   </div>
 
   <!-- 4. 每日一句 -->
@@ -241,7 +259,7 @@ body{
     <div class="card-header"><span class="icon">💬</span>每日一句</div>
     <div class="quote">
       <div class="text">完美的开始不如先开始，<br>边做边调整才是智慧。</div>
-      <div class="author">— 每日先知 · 处女座季节</div>
+      <div class="author">— 查理·芒格</div>
     </div>
   </div>
 
@@ -293,16 +311,13 @@ body{
   <!-- 9. 今日穿搭 -->
   <div class="card">
     <div class="card-header"><span class="icon">👔</span>今日穿搭推荐</div>
-    <div class="text-block">
-      <div class="row"><span class="dot"></span><span class="txt"><b>通勤职场风</b> · 今日气温20~30℃，阴天微凉</span></div>
-      <div class="row"><span class="dot"></span><span class="txt">上身：薄款针织开衫 / 轻质西装外套，内搭纯色衬衫</span></div>
-      <div class="row"><span class="dot"></span><span class="txt">下身：九分西裤 / 直筒通勤裤，配乐福鞋或低跟鞋</span></div>
-      <div class="row"><span class="dot"></span><span class="txt">配色：藏蓝 / 燕麦色 / 浅灰，沉稳干练</span></div>
-      <div class="row"><span class="dot"></span><span class="txt" style="color:var(--gold-soft);font-size:12px;">早晚温差大，建议随身带一件薄外套。</span></div>
+    <div class="outfit-tabs" id="outfitTabs">
+      <div class="tab active" data-outfit="work">通勤职场</div>
+      <div class="tab" data-outfit="casual">休闲风</div>
+      <div class="tab" data-outfit="sport">运动风</div>
+      <div class="tab" data-outfit="sweet">甜美风</div>
     </div>
-    <div class="outfit-tags">
-      <span>通勤职场风</span><span>薄外套</span><span>九分裤</span><span>乐福鞋</span><span>藏蓝色系</span>
-    </div>
+    <div class="text-block" id="outfitContent"></div>
   </div>
 
   <!-- 网站链接 -->
@@ -315,5 +330,45 @@ body{
     天气 · 万年历 · 星座 · 每日一句 · 一画 · 诗词 · 景点 · 英语 · 穿搭<br>
     每天早上8点自动推送
   </div>
+<script>
+const zodiacData=[
+{name:'白羊座',icon:'♈',stars:'★★★☆☆',desc:'经历值得称赞，土星位于白羊座分享智慧。运用所学将挑战圆满解决，你能指导他人应对人生起落。保持冷静，稳中求胜。'},
+{name:'金牛座',icon:'♉',stars:'★★★★☆',desc:'赚钱潜力比意识到的更多样，天王星穿行财帛宫创造机遇世界。信心增强，职业上倾向于走鲜有人走的路，坚持直觉终有回报。'},
+{name:'双子座',icon:'♊',stars:'★★★★☆',desc:'脑海涌现激动想法，木星位于沟通宫鼓励乐观哲思。乐于分享建议，天王星敦促大胆选择最幸福的生活方式。'},
+{name:'巨蟹座',icon:'♋',stars:'★★★★☆',desc:'工作中如鱼得水，土星位于事业宫助你建立声誉。事业前景光明，同事乐于合作，专业能力受尊重。注意家庭与工作平衡。'},
+{name:'狮子座',icon:'♌',stars:'★★★★☆',desc:'处于美好时光，崭新愉悦感充满自信，将浪漫与友谊吸引到生活圈。木星为度假或旅行营造完美氛围。宜规划旅行增进感情。'},
+{name:'处女座',icon:'♍',stars:'★★★★☆',desc:'职场变化让你耳目一新，渴望尝试新事物。天王星穿行事业宫，工作充满不可预测性与刺激感，发现创新方案。科学、技术领域吸引你。'},
+{name:'天秤座',icon:'♎',stars:'★★★★☆',desc:'深谙凝聚人心之道，木星穿越社交宫为友谊和团队带来好运。魅力吸引合作项目，日程排满趣味邀约。宜拓展人脉。'},
+{name:'天蝎座',icon:'♏',stars:'★★★☆☆',desc:'整理日常生活好时机，土星位于习惯宫帮助清晰定义目标。保持勤勉、坚持计划，将迎来令人珍视的喜悦变化。稳步前行是最佳选择。'},
+{name:'射手座',icon:'♐',stars:'★★★★☆',desc:'充满活力的人进入生活带来益处，不同观点让你振奋。天王星位于关系宫颠覆期望，拥抱独特品质，出人意料的选择或许是激发活力的完美方式。'},
+{name:'摩羯座',icon:'♑',stars:'★★★☆☆',desc:'被提升幸福感的非常规方式吸引，天王星点亮习惯宫。对另类疗法和非传统健康方式产生兴趣，顺从直觉开辟属于自己的路。'},
+{name:'水瓶座',icon:'♒',stars:'★★★★★',desc:'美妙恋爱时光，乐观木星穿行伴侣宫。现有感情更牢固，单身者新爱情可能降临。热情表达感受，好运通过爱人降临。'},
+{name:'双鱼座',icon:'♓',stars:'★★★☆☆',desc:'务实赚钱好时机，土星位于薪资宫帮助巩固才能。导师或经验丰富的人伸出援手，谨慎财务规划让社交生活资金更充裕。'}
+];
+function showZodiac(idx){
+  var d=zodiacData[idx];
+  document.getElementById('zodiacContent').innerHTML='<span class="star">✦</span> '+d.name+' · 综合运势 '+d.stars+'<br><br><span class="star">✦</span> <span style="color:var(--text-dim)">'+d.desc+'</span>';
+  document.querySelectorAll('.sign-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+}
+document.querySelectorAll('.sign-btn').forEach(function(btn,i){btn.addEventListener('click',function(){showZodiac(i);});});
+showZodiac(5);
+var outfitData={
+'work':{rows:['<b>通勤职场风</b> · 今日气温20~30℃，阴天微凉','上身：薄款针织开衫 / 轻质西装外套，内搭纯色衬衫','下身：九分西裤 / 直筒通勤裤，配乐福鞋或低跟鞋','配色：藏蓝 / 燕麦色 / 浅灰，沉稳干练'],tags:['通勤职场风','薄外套','九分裤','乐福鞋','藏蓝色系'],tip:'早晚温差大，建议随身带一件薄外套。'},
+'casual':{rows:['<b>休闲风</b> · 今日气温20~30℃，阴天微凉','上身：宽松卫衣 / 棒球衫，内搭纯色T恤','下身：牛仔裤 / 休闲裤，配帆布鞋或运动鞋','配色：米白 / 卡其 / 浅蓝，轻松随性'],tags:['休闲风','卫衣','牛仔裤','帆布鞋','米白色系'],tip:'阴天适合穿浅色系，显得清爽有精神。'},
+'sport':{rows:['<b>运动风</b> · 今日气温20~30℃，阴天微凉','上身：速干T恤 / 运动背心，外搭轻薄风衣','下身：运动裤 / 瑜伽裤，配跑鞋或训练鞋','配色：深灰 / 亮橙 / 荧光绿，活力满满'],tags:['运动风','速干衣','运动裤','跑鞋','深灰色系'],tip:'湿度较高运动易出汗，选择透气速干面料。'},
+'sweet':{rows:['<b>甜美风</b> · 今日气温20~30℃，阴天微凉','上身：碎花blouse / 荷叶边衬衫，搭配针织马甲','下身：A字半裙 / 百褶裙，配玛丽珍鞋或小皮鞋','配色：奶茶棕 / 雾粉 / 鹅黄，温柔可人'],tags:['甜美风','碎花','A字裙','玛丽珍鞋','奶茶色系'],tip:'初秋换季，甜美穿搭搭配薄针织最相宜。'}
+};
+function showOutfit(key){
+  var d=outfitData[key];var html='';
+  d.rows.forEach(function(r){html+='<div class="row"><span class="dot"></span><span class="txt">'+r+'</span></div>';});
+  html+='<div class="row"><span class="dot"></span><span class="txt" style="color:var(--gold-soft);font-size:12px;">'+d.tip+'</span></div>';
+  html+='<div class="outfit-tags">';d.tags.forEach(function(t){html+='<span>'+t+'</span>';});
+  html+='</div>';
+  document.getElementById('outfitContent').innerHTML=html;
+  document.querySelectorAll('.outfit-tabs .tab').forEach(function(t){t.classList.toggle('active',t.dataset.outfit===key);});
+}
+document.querySelectorAll('.outfit-tabs .tab').forEach(function(tab){tab.addEventListener('click',function(){showOutfit(tab.dataset.outfit);});});
+showOutfit('work');
+</script>
 </body>
 </html>
