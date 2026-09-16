@@ -101,6 +101,19 @@ body{
 .outfit-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
 .outfit-tags span{font-size:12px;padding:5px 12px;border-radius:14px;background:rgba(232,200,116,0.12);color:var(--gold-soft);}
 .footer{text-align:center;color:var(--text-dim);font-size:11px;margin-top:24px;letter-spacing:1px;line-height:1.8;}
+.cal{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:11px;}
+.cal th{color:var(--text-dim);font-weight:400;padding:6px 0;text-align:center;font-size:10px;letter-spacing:1px;}
+.cal td{text-align:center;padding:7px 0;position:relative;border-radius:8px;}
+.cal td .solar{font-size:14px;font-weight:600;}
+.cal td .lunar{font-size:9px;color:var(--text-dim);margin-top:2px;}
+.cal td.today{background:linear-gradient(135deg,rgba(232,200,116,0.25),rgba(232,200,116,0.1));border:1px solid rgba(232,200,116,0.3);}
+.cal td.today .solar{color:var(--gold);}
+.cal td.holiday .lunar{color:var(--red);}
+.cal td .term{color:var(--green);font-size:9px;}
+.cal td.weekend .solar{color:var(--text-dim);}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding:0 4px;}
+.cal-head .month{font-size:15px;font-weight:600;color:var(--gold);letter-spacing:2px;}
+.cal-head .nav{font-size:11px;color:var(--text-dim);}
 .link-card{
   display:block;text-align:center;margin:16px;padding:14px;border-radius:12px;
   background:linear-gradient(135deg,rgba(232,200,116,0.15),rgba(155,123,255,0.1));
@@ -137,6 +150,69 @@ body{
     <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px;text-align:center;line-height:1.8;">
       丙午年（马年）丁酉月 癸巳日<br>农历八月初六 · 星期三 · 今日无假期<br>下一个节气：秋分（9月23日）
     </div>
+    <!-- 9月日历 -->
+    <div class="cal-head">
+      <span class="nav">‹ 8月</span>
+      <span class="month">2026年9月</span>
+      <span class="nav">10月 ›</span>
+    </div>
+    <table class="cal">
+      <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>
+      <tr>
+        <td class="weekend"><div class="solar">30</div><div class="lunar">七月十八</div></td>
+        <td><div class="solar">31</div><div class="lunar">七月十九</div></td>
+        <td><div class="solar">1</div><div class="lunar">七月二十</div></td>
+        <td><div class="solar">2</div><div class="lunar">七月廿一</div></td>
+        <td><div class="solar">3</div><div class="lunar">七月廿二</div></td>
+        <td><div class="solar">4</div><div class="lunar">七月廿三</div></td>
+        <td class="weekend"><div class="solar">5</div><div class="lunar">七月廿四</div></td>
+      </tr>
+      <tr>
+        <td class="weekend"><div class="solar">6</div><div class="lunar">七月廿五</div></td>
+        <td><div class="solar">7</div><div class="term">白露</div></td>
+        <td><div class="solar">8</div><div class="lunar">七月廿七</div></td>
+        <td><div class="solar">9</div><div class="lunar">七月廿八</div></td>
+        <td><div class="solar">10</div><div class="lunar">七月廿九</div></td>
+        <td><div class="solar">11</div><div class="lunar" style="color:var(--gold-soft);">八月初一</div></td>
+        <td class="weekend"><div class="solar">12</div><div class="lunar">八月初二</div></td>
+      </tr>
+      <tr>
+        <td class="weekend"><div class="solar">13</div><div class="lunar">八月初三</div></td>
+        <td><div class="solar">14</div><div class="lunar">八月初四</div></td>
+        <td><div class="solar">15</div><div class="lunar">八月初五</div></td>
+        <td class="today"><div class="solar">16</div><div class="lunar">八月初六</div></td>
+        <td><div class="solar">17</div><div class="lunar">八月初七</div></td>
+        <td><div class="solar">18</div><div class="lunar">八月初八</div></td>
+        <td class="weekend"><div class="solar">19</div><div class="lunar">八月初九</div></td>
+      </tr>
+      <tr>
+        <td class="weekend"><div class="solar">20</div><div class="lunar">八月初十</div></td>
+        <td><div class="solar">21</div><div class="lunar">八月十一</div></td>
+        <td><div class="solar">22</div><div class="lunar">八月十二</div></td>
+        <td><div class="solar">23</div><div class="term">秋分</div></td>
+        <td><div class="solar">24</div><div class="lunar">八月十四</div></td>
+        <td class="holiday"><div class="solar">25</div><div class="lunar">中秋</div></td>
+        <td class="weekend holiday"><div class="solar">26</div><div class="lunar">八月十六</div></td>
+      </tr>
+      <tr>
+        <td class="weekend"><div class="solar">27</div><div class="lunar">八月十七</div></td>
+        <td><div class="solar">28</div><div class="lunar">八月十八</div></td>
+        <td><div class="solar">29</div><div class="lunar">八月十九</div></td>
+        <td><div class="solar">30</div><div class="lunar">八月二十</div></td>
+        <td><div class="solar">1</div><div class="lunar">八月廿一</div></td>
+        <td><div class="solar">2</div><div class="lunar">八月廿二</div></td>
+        <td class="weekend"><div class="solar">3</div><div class="lunar">八月廿三</div></td>
+      </tr>
+      <tr>
+        <td class="weekend"><div class="solar">4</div><div class="lunar">八月廿四</div></td>
+        <td><div class="solar">5</div><div class="lunar">八月廿五</div></td>
+        <td><div class="solar">6</div><div class="lunar">八月廿六</div></td>
+        <td><div class="solar">7</div><div class="lunar">八月廿七</div></td>
+        <td><div class="solar">8</div><div class="term">寒露</div></td>
+        <td><div class="solar">9</div><div class="lunar">八月廿九</div></td>
+        <td class="weekend"><div class="solar">10</div><div class="lunar">九月三十</div></td>
+      </tr>
+    </table>
     <div class="almanac-grid">
       <div class="almanac-item good">
         <div class="label">宜</div>
