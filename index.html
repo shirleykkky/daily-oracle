@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日先知 · 今日运势</title>
+<meta name="theme-color" content="#1a1a2e">
+<style>
+:root{
+  --bg:#0f0f1a;
+  --card-border:rgba(255,255,255,0.1);
+  --gold:#e8c874;
+  --gold-soft:#f5e6b8;
+  --text:#f2ede3;
+  --text-dim:#a89f8f;
+  --accent:#9b7bff;
+  --green:#7bc88c;
+  --red:#e0685f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:30px;
+}
+.hero{
+  background:radial-gradient(ellipse at 50% -20%, #3b2a5e 0%, #1a1a2e 60%, #0f0f1e 100%);
+  padding:34px 20px 22px;
+  text-align:center;
+  position:relative;
+}
+.hero::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.hero .date-wrap{
+  font-size:13px;color:var(--text-dim);letter-spacing:2px;margin-bottom:8px;
+}
+.hero .title{
+  font-size:26px;font-weight:700;letter-spacing:6px;
+  background:linear-gradient(120deg,#e8c874,#f6e7b3,#e8c874);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .subtitle{
+  font-size:12px;color:var(--text-dim);margin-top:8px;letter-spacing:1px;
+}
+.card{
+  border-radius:16px;
+  margin:14px 16px;
+  padding:18px;
+  background:linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+  border:1px solid var(--card-border);
+}
+.card-header{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+  font-size:16px;font-weight:600;letter-spacing:1px;
+}
+.card-header .icon{font-size:18px;}
+.card-header::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0.4;margin-left:6px;
+}
+.weather-main{display:flex;align-items:center;gap:16px;}
+.weather-temp{font-size:48px;font-weight:300;color:var(--gold);}
+.weather-temp span{font-size:20px;vertical-align:super;}
+.weather-info{flex:1;}
+.weather-info .desc{font-size:15px;margin-bottom:4px;}
+.weather-info .range{font-size:12px;color:var(--text-dim);}
+.weather-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.weather-tags span{
+  font-size:11px;padding:3px 8px;border-radius:20px;background:rgba(255,255,255,0.08);
+}
+.almanac-grid{display:flex;gap:12px;}
+.almanac-item{flex:1;border-radius:12px;padding:14px 8px;text-align:center;background:rgba(0,0,0,0.18);}
+.almanac-item .label{font-size:12px;margin-bottom:6px;}
+.almanac-item .list{font-size:12px;line-height:1.7;color:var(--text);}
+.almanac-item.good .label{color:var(--green);}
+.almanac-item.bad .label{color:var(--red);}
+.zodiac{background:rgba(155,123,255,0.08);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.7;}
+.zodiac .star{color:var(--accent);}
+.quote{text-align:center;padding:6px 4px;}
+.quote .text{font-size:17px;line-height:1.8;color:var(--text);letter-spacing:1px;}
+.quote .author{font-size:12px;color:var(--text-dim);margin-top:10px;letter-spacing:1px;}
+.painting{text-align:center;}
+.painting .img{
+  width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover;
+  background:linear-gradient(135deg,#2b2b3a,#1a1a2e);
+  display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:13px;
+}
+.painting .caption{font-size:12px;color:var(--text-dim);margin-top:8px;}
+.poem{text-align:center;}
+.poem .content{font-size:16px;line-height:2;color:var(--text);letter-spacing:1px;}
+.poem .poem-title{font-size:14px;color:var(--gold);margin-bottom:10px;}
+.text-block .row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+.text-block .row:last-child{margin-bottom:0;}
+.text-block .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:8px;flex-shrink:0;}
+.text-block .txt{font-size:14px;line-height:1.7;color:var(--text);}
+.text-block .en{font-size:14px;line-height:1.6;color:var(--text);}
+.text-block .en small{display:block;color:var(--accent);font-size:13px;margin-top:4px;letter-spacing:.5px;}
+.outfit-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.outfit-tags span{font-size:12px;padding:5px 12px;border-radius:14px;background:rgba(232,200,116,0.12);color:var(--gold-soft);}
+.footer{text-align:center;color:var(--text-dim);font-size:11px;margin-top:24px;letter-spacing:1px;line-height:1.8;}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="date-wrap">今日 · 天气 · 宜忌 · 运势</div>
+    <div class="title">每日先知</div>
+    <div class="subtitle">知天气 · 明宜忌 · 养心性</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">🌤️</span>今日天气</div>
+    <div class="weather-main">
+      <div class="weather-temp">22<span>°C</span></div>
+      <div class="weather-info">
+        <div class="desc">多云 · 新沂</div>
+        <div class="range">18°C ~ 27°C · 东南风2级</div>
+        <div class="weather-tags">
+          <span>空气质量 优</span><span>湿度 60%</span><span>紫外线 中等</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">📅</span>万年历</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px;text-align:center;line-height:1.8;">
+      今日无假期 · 节气参考见每日推送
+    </div>
+    <div class="almanac-grid">
+      <div class="almanac-item good">
+        <div class="label">宜</div>
+        <div class="list">祭祀<br>求财<br>出行</div>
+      </div>
+      <div class="almanac-item bad">
+        <div class="label">忌</div>
+        <div class="list">安葬<br>动土<br>开仓</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">♌</span>星座运势</div>
+    <div class="zodiac">
+      <span class="star">✦</span> 综合运势：★★★★☆　<span style="color:var(--text-dim)">运势稳步上升，适合推进重要事项。</span><br>
+      <span class="star">✦</span> 爱情：★★★★☆　<span style="color:var(--text-dim)">沟通顺畅，易有温暖时刻。</span><br>
+      <span class="star">✦</span> 事业：★★★★☆　<span style="color:var(--text-dim)">专注力强，效率高。</span><br>
+      <span class="star">✦</span> 财运：★★★☆☆　<span style="color:var(--text-dim)">理性消费，宜规划。</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">💬</span>每日一句</div>
+    <div class="quote">
+      <div class="text">每天进步一点点，时间会给你答案。</div>
+      <div class="author">— 每日先知</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">🖼️</span>每日一画</div>
+    <div class="painting">
+      <div class="img">今日画作 · 见每日推送</div>
+      <div class="caption">— 每日先知 · 每日更新 —</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">📜</span>每日诗词</div>
+    <div class="poem">
+      <div class="poem-title">《定风波》</div>
+      <div class="content">回首向来萧瑟处，<br>归去，也无风雨也无晴。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">🏞️</span>每日景点</div>
+    <div class="text-block">
+      <div class="row"><span class="dot"></span><span class="txt">—— 每日景点推荐见每日推送 ——</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">🇬🇧</span>每日英语</div>
+    <div class="text-block">
+      <div class="row">
+        <span class="dot"></span>
+        <span class="en">Every day is a new beginning.<small>每一天都是新的开始。</small></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="icon">👔</span>今日穿搭</div>
+    <div class="text-block">
+      <div class="row"><span class="dot"></span><span class="txt">根据今日天气与偏好推荐，见每日推送</span></div>
+    </div>
+    <div class="outfit-tags">
+      <span>通勤职场风</span><span>日常首选</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    每日先知 · 每天早上8点推送<br>
+    天气 · 万年历 · 星座 · 每日一句 · 一画 · 诗词 · 景点 · 英语 · 穿搭
+  </div>
+</body>
+</html>
